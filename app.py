@@ -1,12 +1,12 @@
 import streamlit as st
 import json
-import psutil
-import pandas as pd
 import os
+import pandas as pd
 
-# ✅ Windows-only import
+# Try Windows-only modules
 try:
     import winreg
+    import psutil
     WINDOWS = True
 except:
     WINDOWS = False
@@ -66,21 +66,9 @@ def load_usage():
 
 
 # -------------------------------
-# Format time HH:MM
+# Format time
 # -------------------------------
 def format_time(seconds):
     if seconds < 60:
         return "Less than a minute"
 
-    minutes = seconds // 60
-    hours = minutes // 60
-    minutes = minutes % 60
-
-    return f"{hours:02d}:{minutes:02d}"
-
-
-# -------------------------------
-
-
-df = pd.DataFrame(apps, columns=["App Name", "Version"])
-st.table(df)
